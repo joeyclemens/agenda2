@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #fff;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #50748A 3px solid;
+            display: flex;
+            align-items: center;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+            flex: 1;
+            color: #7C99AD;
+        }
+
+        header .logo {
+            position: absolute;
+            max-height: 60px;
+            margin-right: 20px;
+        }
+
+        .content {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+        }
+
+        .content h2 {
+            color: #50748A;
+        }
+
+        .content a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .quiz-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+           
+            margin-top: 20px;
+        }
+
+        .category-header {
+            font-size: 22px;
+            margin-top: 20px;
+            color: #50748A;
+            border-bottom: 2px solid #50748A;
+            padding-bottom: 10px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #50748A;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            background-color: #50748A;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        /* Feedback styles */
+        .feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border: 2px solid #007BFF;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            max-width: 300px;
+            z-index: 1000;
+        }
+
+        .feedback p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="images/MJMEDICAL.png" alt="MJ Medical Logo" class="logo">
+            <h1>CAT Meeting</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h2>Quiz Time</h2>
+            <!-- Quiz Section -->
+            <div class="quiz-container">
+                <form id="quizForm">
+                    <!-- Category 1: History -->
+                    <div class="category-header">History</div>
+                    <div class="question">
+                        <p>1. Who was the first human to journey into space?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question1" value="a"> Yuri Gagarin</label>
+                            <label class="option"><input type="radio" name="question1" value="b"> Buzz Aldrin</label>
+                            <label class="option"><input type="radio" name="question1" value="c"> Neil Armstrong</label>
+                            <label class="option"><input type="radio" name="question1" value="d"> Laika</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>2. By what nickname is Edward Teach better known?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question2" value="a"> Calico Jack</label>
+                            <label class="option"><input type="radio" name="question2" value="b"> The Gentleman Pirate</label>
+                            <label class="option"><input type="radio" name="question2" value="c"> Monkey D. Luffy</label>
+                            <label class="option"><input type="radio" name="question2" value="d"> Blackbeard</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>3. How long did the Hundred Years' War last?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question3" value="a"> 100 years</label>
+                            <label class="option"><input type="radio" name="question3" value="b"> 1000 years</label>
+                            <label class="option"><input type="radio" name="question3" value="c"> Still happening</label>
+                            <label class="option"><input type="radio" name="question3" value="d"> 116 years</label>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Movies -->
+                    <div class="category-header">Movies</div>
+                    <div class="question">
+                        <p>4. Who directed "Inception"?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question4" value="a"> Christopher Nolan</label>
+                            <label class="option"><input type="radio" name="question4" value="b"> Steven Spielberg</label>
+                            <label class="option"><input type="radio" name="question4" value="c"> James Cameron</label>
+                            <label class="option"><input type="radio" name="question4" value="d"> Quentin Tarantino</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>5. What movie won the Oscar for Best Picture in 1994?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question5" value="a"> Forrest Gump</label>
+                            <label class="option"><input type="radio" name="question5" value="b"> Pulp Fiction</label>
+                            <label class="option"><input type="radio" name="question5" value="c"> Shawshank Redemption</label>
+                            <label class="option"><input type="radio" name="question5" value="d"> The Lion King</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>6. Michael Myers’s mask in Halloween is which actor’s face?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question6" value="a"> Clint Eastwood</label>
+                            <label class="option"><input type="radio" name="question6" value="b"> Marlon Brando</label>
+                            <label class="option"><input type="radio" name="question6" value="c"> Paul Newman</label>
+                            <label class="option"><input type="radio" name="question6" value="d"> William Shatner</label>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Science -->
+                    <div class="category-header">Science</div>
+                    <div class="question">
+                        <p>7. What is the nearest planet to the sun?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question7" value="a"> Venus</label>
+                            <label class="option"><input type="radio" name="question7" value="b"> Mercury</label>
+                            <label class="option"><input type="radio" name="question7" value="c"> Pluto</label>
+                            <label class="option"><input type="radio" name="question7" value="d"> Saturn</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>8. Dolly was the first-ever living creature to be cloned. What type of animal was she?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question8" value="a"> Dog</label>
+                            <label class="option"><input type="radio" name="question8" value="b"> Mouse</label>
+                            <label class="option"><input type="radio" name="question8" value="c"> Sheep</label>
+                            <label class="option"><input type="radio" name="question8" value="d"> Human</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>9. What is the hardest natural substance on Earth?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question9" value="a"> Diamond</label>
+                            <label class="option"><input type="radio" name="question9" value="b"> Gold</label>
+                            <label class="option"><input type="radio" name="question9" value="c"> Iron</label>
+                            <label class="option"><input type="radio" name="question9" value="d"> Platinum</label>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Geography -->
+                    <div class="category-header">Geography</div>
+                    <div class="question">
+                        <p>10. What is the largest ocean on Earth?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question10" value="a"> Pacific Ocean</label>
+                            <label class="option"><input type="radio" name="question10" value="b"> Atlantic Ocean</label>
+                            <label class="option"><input type="radio" name="question10" value="c"> Indian Ocean</label>
+                            <label class="option"><input type="radio" name="question10" value="d"> Arctic Ocean</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>11. Which country is the smallest by land area?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question11" value="a"> San Marino</label>
+                            <label class="option"><input type="radio" name="question11" value="b"> Monaco</label>
+                            <label class="option"><input type="radio" name="question11" value="c"> Vatican City</label>
+                            <label class="option"><input type="radio" name="question11" value="d"> Liechtenstein</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>12. In which country is Chernobyl?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question12" value="a"> Russia</label>
+                            <label class="option"><input type="radio" name="question12" value="b"> USSR</label>
+                            <label class="option"><input type="radio" name="question12" value="c"> Ukraine</label>
+                            <label class="option"><input type="radio" name="question12" value="d"> Polnad</label>
+                        </div>
+                    </div>
+
+                    <!-- Category 5: Sports -->
+                    <div class="category-header">General</div>
+                    <div class="question">
+                        <p>13. What color is the letter Y in the eBay logo? </p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question13" value="a"> Blue</label>
+                            <label class="option"><input type="radio" name="question13" value="b"> Green</label>
+                            <label class="option"><input type="radio" name="question13" value="c"> Red</label>
+                            <label class="option"><input type="radio" name="question13" value="d"> Yellow</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>14. What’s the heaviest organ in the human body?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question14" value="a"> Brain</label>
+                            <label class="option"><input type="radio" name="question14" value="b"> Heart</label>
+                            <label class="option"><input type="radio" name="question14" value="c"> Liver</label>
+                            <label class="option"><input type="radio" name="question14" value="d"> Kidney</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>15. What is Hippopotomonstrosesquipedaliophobia the fear of?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question15" value="a"> Hippos</label>
+                            <label class="option"><input type="radio" name="question15" value="b"> Swamps</label>
+                            <label class="option"><input type="radio" name="question15" value="c"> Long words</label>
+                            <label class="option"><input type="radio" name="question15" value="d"> Trees</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="button" class="submit-button" onclick="submitQuiz()">Submit</button>
+                </form>
+                
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Container -->
+    <div id="feedback" class="feedback"></div>
+
+    <script>
+        // Quiz submission function
+function submitQuiz() {
+    var form = document.getElementById('quizForm');
+    var result = document.getElementById('result');
+    var feedback = document.getElementById('feedback');
+    var score = 0;
+
+    // Correct answers
+    var answers = {
+        question1: 'a',
+        question2: 'd',
+        question3: 'd',
+        question4: 'a',
+        question5: 'a',
+        question6: 'd',
+        question7: 'b',
+        question8: 'c',
+        question9: 'a',
+        question10: 'a',
+        question11: 'c',
+        question12: 'c',
+        question13: 'b',
+        question14: 'c',
+        question15: 'c'
+    };
+
+    // Clear previous feedback
+    feedback.innerHTML = '';
+
+    // Initialize question index
+    var questionIndex = 1;
+
+    // Check answers
+    var elements = form.elements;
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        if (element.type === 'radio' && element.checked) {
+            var question = element.name;
+            var selectedValue = element.value;
+            var correctValue = answers[question];
+
+            // Feedback for each question
+            if (selectedValue === correctValue) {
+                feedback.innerHTML += `<p class="correct">Question ${questionIndex}: Correct!</p>`;
+                score++;
+            } else {
+                feedback.innerHTML += `<p class="incorrect">Question ${questionIndex}: Incorrect. The correct answer is "${document.querySelector(`input[name=${question}][value=${correctValue}]`).parentNode.textContent.trim()}".</p>`;
+            }
+
+            // Move to next question index
+            questionIndex++;
+        }
+    }
+
+    // Display total result
+    result.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
+
+    // Show the feedback container
+    feedback.style.display = 'block';
+}
+
+    </script>
+    
+</body>
+</html>

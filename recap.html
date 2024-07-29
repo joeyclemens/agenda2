@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recap</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 5px solid #50748A; /* Border color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 8px 16px #000; /* Increased shadow */
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: orange;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Style for Bob's image */
+        .top-right-image {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px; /* Adjusted size */
+            height: auto;
+            border-radius: 10px;
+            transition: all 0.3s ease; /* Transition for smooth resizing */
+        }
+
+        .top-right-image.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: none;
+            object-fit: contain;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="images/MJMEDICAL.png" alt="MJ Medical Logo" class="logo">
+            <h1>CAT Meeting recap</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h2>Date: 26/06/2024</h2>
+           
+            <div class="location">
+                <h2 class="location-text">Meeting chair: Joey</h2>
+            </div>
+            <div class="Attendees">
+                <h2 class="Attendees-text">Attendees: Gemma, Rose, Matt, Nicola, Tim</h2>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda item 1 – <a id="riddleLink" href="#">Hilarious jokes</a></p>
+               
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda item 2 –  <a href="huddle.html" target="_blank"> Huddle week</a><BR></p>
+                <ul>
+                    <li>What went well </li>
+                    <li>What didnt go so well</b> </li>
+                    <li>We should think about adding suncream to the summer party budget</b> </li>
+                    <li>Andy will be getting back to us on the coming years KR&D Research topics but the shortlist so far is:
+                        <ol>
+                            <li>Considerations in design and planning for staff in mental health buildings</li>
+                            <li>The impact of digital technology on space and infrastructure needs within a building</li>
+                            <li>Gender neutral, etc. specific space needs</li>
+                            <li>Design requirements and considerations for therapy animals</li>
+                            <li>Mental health prototyping of new equipment and furniture (VR, augmented reality)</li>
+                            <li>GDH Carbon output. How much of this is equipment? Research impacts of different modalities and suppliers on Nett zero targets</li>
+                            <li>The current design process. Is there another way?</li>
+                            <li>Paediatric spaces. Adapting the building to accommodate the differing requirements of age groups</li>
+                            <li>Institutionalised furniture. Is this subject dead or not? Where next?</li>
+                        </ol>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda item 3 – Everything else</p>
+                <p>
+                  
+                        <li>Discussions about improving communication within the company, particularly around recruitment updates and new software implementations like SharePoint.</li>
+                        <li>Rejuvenating outputs - PowerBi, lucid chart etc...</li>
+                        <li>The challenge of setting personal development objectives and suggested creating a centralized place to share objectives and ideas</li>
+                        <li>Anything else I may have forgotten</li>
+
+        </div>
+    </div>
+
+     <!-- Modal -->
+     <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="jokeContent">Some content in the Modal..</p>
+        </div>
+    </div>
+
+    <script>
+        // Array of jokes
+        var jokes = [
+            "Why don't scientists trust atoms? Because they make up everything!",
+            "Why did the scarecrow win an award? Because he was outstanding in his field!",
+            "Why don't skeletons fight each other? They don't have the guts.",
+            "What do you get when you cross a snowman and a vampire? Frostbite.",
+            "Why was the math book sad? Because it had too many problems.",
+            "In 2017 I didn't do a marathon. I didn't do one in 2018, 2019, or 2020, either. This is a running joke.",
+            "Not to brag but I made six figures last year. I was also named worst employee at the toy factory.",
+            "My doctor told me I was going deaf. The news was hard for me to hear.",
+            "I didn't want to believe that my dad was stealing from his job as a traffic cop, but when I got home, all the signs were there.",
+            "As I get older, I remember all the people I lost along the way. Maybe a career as a tour guide was not the right choice.",
+            "I don't trust stairs. They're always up to something.",
+            "What's blue and not very heavy? Light blue.",
+            "I was playing chess with my friend and he said, “Let’s make this interesting.” So we stopped playing chess.",
+            "Today I’m attaching a light to the ceiling, but I’m afraid I’ll probably screw it up.",
+            "I built a model of Mount Everest and my son asked if it was to scale. No, I said. It's to look at.",
+            "My friend claims he glued himself to his autobiography. I don't believe him, but that's his story and he's sticking to it.",
+            "What did one monocle say to the other monocle? Let's get together and make a spectacle of ourselves.",
+            "What’s the best thing about living in Switzerland? I don’t know, but the flag is a big plus.",
+            "The sky was looking ominous so I asked Siri, “Surely, it’s not going to rain today?” And she replied, “Yes it is, and don’t call me Shirley.” That was when I realized I’d left my phone on Airplane mode."
+        ];
+    
+        // Shuffle array function
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    
+        // Shuffled jokes array and index
+        var shuffledJokes = shuffle(jokes.slice());
+        var currentIndex = 0;
+    
+        // Get the modal
+        var modal = document.getElementById("myModal");
+    
+        // Get the link that opens the modal
+        var link = document.getElementById("riddleLink");
+    
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+    
+        // Get the joke content element
+        var jokeContent = document.getElementById("jokeContent");
+    
+        // Function to open the modal
+        function openModal() {
+            jokeContent.textContent = shuffledJokes[currentIndex];
+            currentIndex++;
+            if (currentIndex >= shuffledJokes.length) {
+                shuffledJokes = shuffle(jokes.slice());
+                currentIndex = 0;
+            }
+            modal.style.display = "block";
+        }
+    
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    
+        // When the user clicks the link, open the modal and display a random joke
+        link.onclick = function(event) {
+            event.preventDefault();
+            openModal();
+        }
+    
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = closeModal;
+    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    
+        // Handle Bob's image click to enlarge and shrink
+        var bobImage = document.getElementById("bobImage");
+    
+        bobImage.onclick = function() {
+            if (bobImage.classList.contains("fullscreen")) {
+                bobImage.classList.remove("fullscreen");
+            } else {
+                bobImage.classList.add("fullscreen");
+            }
+        }
+    
+        // Prevent the click on the image from closing the modal
+        bobImage.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 5px solid #50748A; /* Border color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 8px 16px #000; /* Increased shadow */
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: orange;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Style for Bob's image */
+        .top-right-image {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px; /* Adjusted size */
+            height: auto;
+            border-radius: 10px;
+            transition: all 0.3s ease; /* Transition for smooth resizing */
+        }
+
+        .top-right-image.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: none;
+            object-fit: contain;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="images/MJMEDICAL.png" alt="MJ Medical Logo" class="logo">
+            <img id="bobImage" src="images/bob.jpg" alt="Bob's Image" class="top-right-image">
+            <h1>CAT Meeting</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h2>Date: July 25, 2024</h2>
+            <div class="location">
+                <h2 class="location-text">Location: MS Teams</h2>
+                <img src="images/icons8-microsoft-teams-2019-64.png" alt="MS Teams Logo">
+            </div>
+            <div class="location">
+                <h2 class="location-text">Meeting chair: Joey</h2>
+            </div>
+            <div class="Attendees">
+                <h2 class="Attendees-text">Attendees: Rose?, Matt, Nicola, Tim</h2>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda Item 1</p>
+                <p>Welcome & <a href="quiz.html" target="_blank">Ice breaker</a></p>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda Item 2</a></p>
+                <p><a href="recap.html" target="_blank">Recap on last session </a></p>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda Item 3</a></p>
+                <p>CORD <BR>
+                 PowerBi shizzle</p>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda Item 4</p>
+                <p>AOB and how is everyone doing/space to rant if needed</p>
+            </div>
+            <div class="agenda-item">
+                <p class="time">Agenda Item 5</p>
+                <p>Someone else can chair next month. Bring on the wheel of doom</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+    
+        // Handle Bob's image click to enlarge and shrink
+        var bobImage = document.getElementById("bobImage");
+    
+        bobImage.onclick = function() {
+            if (bobImage.classList.contains("fullscreen")) {
+                bobImage.classList.remove("fullscreen");
+            } else {
+                bobImage.classList.add("fullscreen");
+            }
+        }
+    
+        // Prevent the click on the image from closing the modal
+        bobImage.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+    
+</body>
+</html>
