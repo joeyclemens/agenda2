@@ -5,145 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        header {
-            background: #fff;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #50748A 3px solid;
-            display: flex;
-            align-items: center;
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            text-align: center;
-            text-transform: uppercase;
-            margin: 0;
-            font-size: 24px;
-            flex: 1;
-            color: #7C99AD;
-        }
-
-        header .logo {
-            position: absolute;
-            max-height: 60px;
-            margin-right: 20px;
-        }
-
-        .content {
-            padding: 20px;
-            background: #fff;
-            margin-top: 20px;
-        }
-
-        .content h2 {
-            color: #50748A;
-        }
-
-        .content a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .quiz-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-           
-            margin-top: 20px;
-        }
-
-        .category-header {
-            font-size: 22px;
-            margin-top: 20px;
-            color: #50748A;
-            border-bottom: 2px solid #50748A;
-            padding-bottom: 10px;
-        }
-
-        .question {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #50748A;
-        }
-
-        .options {
-            margin-bottom: 20px;
-        }
-
-        .option {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .option input {
-            margin-right: 10px;
-        }
-
-        .submit-button {
-            background-color: #50748A;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-
-        /* Feedback styles */
-        .feedback {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #fff;
-            border: 2px solid #007BFF;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            max-width: 300px;
-            z-index: 1000;
-            display: none; /* Hide by default */
-        }
-
-
-        .feedback p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .correct {
-            color: green;
-        }
-
-        .incorrect {
-            color: red;
-        }
-    </style>
+    
 </head>
 <body>
     <header>
@@ -155,8 +17,11 @@
     <div class="container">
         <div class="content">
             <h2>Quiz Time</h2>
+            <div id="start-container">
+                <button id="start-button" class="submit-button">Start Quiz</button>
+            </div>
             <!-- Quiz Section -->
-            <div class="quiz-container">
+            <div id="quiz-container" class="quiz-container" style="display: none;">
                 <form id="quizForm">
                     <!-- Category 1: History -->
                     <div class="category-header">History</div>
@@ -331,72 +196,123 @@
     <div id="feedback" class="feedback"></div>
 
     <script>
-        // Quiz submission function
-        function submitQuiz() {
-    var form = document.getElementById('quizForm');
-    var result = document.getElementById('result');
-    var feedback = document.getElementById('feedback');
-    var score = 0;
-
-    // Correct answers
-    var answers = {
-        question1: 'a',
-        question2: 'd',
-        question3: 'd',
-        question4: 'a',
-        question5: 'a',
-        question6: 'd',
-        question7: 'b',
-        question8: 'c',
-        question9: 'a',
-        question10: 'a',
-        question11: 'c',
-        question12: 'c',
-        question13: 'b',
-        question14: 'c',
-        question15: 'c'
-    };
-
-    // Clear previous feedback
-    feedback.innerHTML = '';
-
-    // Initialize question index
-    var questionIndex = 1;
-
-    // Check answers
-    Object.keys(answers).forEach(function(question) {
-        var selectedOption = form.querySelector(`input[name="${question}"]:checked`);
-        if (selectedOption) {
-            var selectedValue = selectedOption.value;
-            var correctValue = answers[question];
-            var feedbackMessage = '';
-
-            if (selectedValue === correctValue) {
-                feedbackMessage = `<p class="correct">Question ${questionIndex}: Correct!</p>`;
-                score++;
-            } else {
-                var correctAnswerText = document.querySelector(`input[name="${question}"][value="${correctValue}"]`).parentNode.textContent.trim();
-                feedbackMessage = `<p class="incorrect">Question ${questionIndex}: Incorrect. The correct answer is "${correctAnswerText}".</p>`;
+        document.addEventListener('DOMContentLoaded', function() {
+            var startButton = document.getElementById('start-button');
+            var quizContainer = document.getElementById('quiz-container');
+            var startContainer = document.getElementById('start-container');
+            var timerElement = document.getElementById('timer');
+            var timeLeft = 5 * 60; // 5 minutes in seconds
+        
+            startButton.addEventListener('click', function() {
+                startContainer.style.display = 'none';
+                quizContainer.style.display = 'block';
+                timerElement.style.display = 'block';
+                startTimer();
+            });
+        
+            function startTimer() {
+                var timer = setInterval(function() {
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = timeLeft % 60;
+                    
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    
+                    timerElement.textContent = `Time left: ${minutes}:${seconds}`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        submitQuiz();
+                    }
+                    timeLeft--;
+                }, 1000);
             }
-
-            feedback.innerHTML += feedbackMessage;
-        } else {
-            feedback.innerHTML += `<p class="incorrect">Question ${questionIndex}: No answer selected.</p>`;
-        }
-
-        // Move to next question index
-        questionIndex++;
-    });
-
-    // Display total result
-    result.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
-
-    // Show the feedback container
-    feedback.style.display = 'block';
-}
-
-
-    </script>
-    
+        
+            function submitQuiz() {
+                var form = document.getElementById('quizForm');
+                var result = document.getElementById('result');
+                var feedback = document.getElementById('feedback');
+                var score = 0;
+        
+                // Correct answers
+                var answers = {
+                    question1: 'a',
+                    question2: 'd',
+                    question3: 'd',
+                    question4: 'a',
+                    question5: 'a',
+                    question6: 'd',
+                    question7: 'b',
+                    question8: 'c',
+                    question9: 'a',
+                    question10: 'a',
+                    question11: 'c',
+                    question12: 'c',
+                    question13: 'b',
+                    question14: 'c',
+                    question15: 'c'
+                };
+        
+                // Clear previous feedback
+                feedback.innerHTML = '';
+        
+                // Initialize question index
+                var questionIndex = 1;
+        
+                // Check answers
+                Object.keys(answers).forEach(function(question) {
+                    var selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+                    if (selectedOption) {
+                        var selectedValue = selectedOption.value;
+                        var correctValue = answers[question];
+                        var feedbackMessage = '';
+        
+                        if (selectedValue === correctValue) {
+                            feedbackMessage = `<p class="correct">Question ${questionIndex}: Correct!</p>`;
+                            score++;
+                        } else {
+                            var correctAnswerText = document.querySelector(`input[name="${question}"][value="${correctValue}"]`).parentNode.textContent.trim();
+                            feedbackMessage = `<p class="incorrect">Question ${questionIndex}: Incorrect. The correct answer is "${correctAnswerText}".</p>`;
+                        }
+        
+                        feedback.innerHTML += feedbackMessage;
+                    } else {
+                        feedback.innerHTML += `<p class="incorrect">Question ${questionIndex}: No answer selected.</p>`;
+                    }
+        
+                    // Move to next question index
+                    questionIndex++;
+                });
+        
+                // Display total result
+                result.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
+        
+                // Show the feedback container
+                feedback.style.display = 'block';
+                
+                // Hide the timer
+                timerElement.style.display = 'none';
+        
+                // Disable all inputs to prevent further changes
+                var inputs = form.getElementsByTagName('input');
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = true;
+                }
+        
+                // Hide the submit button
+                var submitButton = document.querySelector('.submit-button');
+                if (submitButton) {
+                    submitButton.style.display = 'none';
+                }
+        
+                // Scroll to the top of the results
+                result.scrollIntoView({behavior: "smooth"});
+            }
+        
+            // Attach submitQuiz function to window object so it can be called from HTML
+            window.submitQuiz = submitQuiz;
+        });
+        </script>
+    <div id="timer" class="timer">Time left: 05:00</div>
 </body>
 </html>
