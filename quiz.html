@@ -127,7 +127,9 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             max-width: 300px;
             z-index: 1000;
+            display: none; /* Hide by default */
         }
+
 
         .feedback p {
             margin: 0;
@@ -330,7 +332,7 @@
 
     <script>
         // Quiz submission function
-function submitQuiz() {
+        function submitQuiz() {
     var form = document.getElementById('quizForm');
     var result = document.getElementById('result');
     var feedback = document.getElementById('feedback');
@@ -362,26 +364,29 @@ function submitQuiz() {
     var questionIndex = 1;
 
     // Check answers
-    var elements = form.elements;
-    for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
-        if (element.type === 'radio' && element.checked) {
-            var question = element.name;
-            var selectedValue = element.value;
+    Object.keys(answers).forEach(function(question) {
+        var selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+        if (selectedOption) {
+            var selectedValue = selectedOption.value;
             var correctValue = answers[question];
+            var feedbackMessage = '';
 
-            // Feedback for each question
             if (selectedValue === correctValue) {
-                feedback.innerHTML += `<p class="correct">Question ${questionIndex}: Correct!</p>`;
+                feedbackMessage = `<p class="correct">Question ${questionIndex}: Correct!</p>`;
                 score++;
             } else {
-                feedback.innerHTML += `<p class="incorrect">Question ${questionIndex}: Incorrect. The correct answer is "${document.querySelector(`input[name=${question}][value=${correctValue}]`).parentNode.textContent.trim()}".</p>`;
+                var correctAnswerText = document.querySelector(`input[name="${question}"][value="${correctValue}"]`).parentNode.textContent.trim();
+                feedbackMessage = `<p class="incorrect">Question ${questionIndex}: Incorrect. The correct answer is "${correctAnswerText}".</p>`;
             }
 
-            // Move to next question index
-            questionIndex++;
+            feedback.innerHTML += feedbackMessage;
+        } else {
+            feedback.innerHTML += `<p class="incorrect">Question ${questionIndex}: No answer selected.</p>`;
         }
-    }
+
+        // Move to next question index
+        questionIndex++;
+    });
 
     // Display total result
     result.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
@@ -389,6 +394,7 @@ function submitQuiz() {
     // Show the feedback container
     feedback.style.display = 'block';
 }
+
 
     </script>
     
