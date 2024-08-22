@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="images/MJMEDICAL.png" alt="MJ Medical Logo" class="logo">
+            <h1>CAT Meeting</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h2>Quiz Time</h2>
+            <div id="start-container">
+                <button id="start-button" class="submit-button">Start Quiz</button>
+            </div>
+            <!-- Quiz Section -->
+            <div id="quiz-container" class="quiz-container" style="display: none;">
+                <form id="quizForm">
+                    <!-- Category 1: Discoveries & Inventions -->
+                    <div class="category-header">Discoveries & Inventions</div>
+                    <div class="question">
+                        <p>1. Who invented dynamite?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question1" value="a"> Thomas Edison</label>
+                            <label class="option"><input type="radio" name="question1" value="b"> George Eastman </label>
+                            <label class="option"><input type="radio" name="question1" value="c"> Guglielmo Marconi</label>
+                            <label class="option"><input type="radio" name="question1" value="d"> Alfred Nobel</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>2. Who discovered penicillin?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question2" value="a"> Leonard Colebrook</label>
+                            <label class="option"><input type="radio" name="question2" value="b"> Alexander Fleming</label>
+                            <label class="option"><input type="radio" name="question2" value="c"> Humphry Davy</label>
+                            <label class="option"><input type="radio" name="question2" value="d"> Frederick Banting</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>3. Who invented the World Wide Web?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question3" value="a"> Tim Berners-Lee</label>
+                            <label class="option"><input type="radio" name="question3" value="b"> Steve Jobs</label>
+                            <label class="option"><input type="radio" name="question3" value="c"> Larry Page</label>
+                            <label class="option"><input type="radio" name="question3" value="d"> Mark Zuckerberg</label>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Movies -->
+                    <div class="category-header">Movies</div>
+                    <div class="question">
+                        <p>4. How many Steven Spielberg films has Tom Hanks starred in?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question4" value="a"> 2</label>
+                            <label class="option"><input type="radio" name="question4" value="b"> 5</label>
+                            <label class="option"><input type="radio" name="question4" value="c"> 3</label>
+                            <label class="option"><input type="radio" name="question4" value="d"> 6</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>5. Inigo Montoya is a character from which 1987 Rob Reiner film?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question5" value="a"> This is Spinal Tap</label>
+                            <label class="option"><input type="radio" name="question5" value="b"> Stand by me</label>
+                            <label class="option"><input type="radio" name="question5" value="c"> The Princess Bride</label>
+                            <label class="option"><input type="radio" name="question5" value="d"> When Harry met Sally</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>6. What happens to Chihiro’s parents in the 2001 Japanese film Spirited Away?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question6" value="a"> Nothing</label>
+                            <label class="option"><input type="radio" name="question6" value="b"> Turned into pigs</label>
+                            <label class="option"><input type="radio" name="question6" value="c"> Turned into cats</label>
+                            <label class="option"><input type="radio" name="question6" value="d"> Murdered</label>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: 2024 -->
+                    <div class="category-header">2024</div>
+                    <div class="question">
+                        <p>7. When Rishi Sunak stood on the doorstep of 10 Downing Street announcing the date of the election, which song could be heard?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question7" value="a"> Things Can Only Get Better</label>
+                            <label class="option"><input type="radio" name="question7" value="b"> Good Riddance</label>
+                            <label class="option"><input type="radio" name="question7" value="c"> Bye Bye Bye</label>
+                            <label class="option"><input type="radio" name="question7" value="d"> Anarchy in the U.K.</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>8. Complete the title of Taylor Swift’s 2024 album: “Tortured Poets …”?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question8" value="a"> and Coffee</label>
+                            <label class="option"><input type="radio" name="question8" value="b"> and Their Cats</label>
+                            <label class="option"><input type="radio" name="question8" value="c"> Department</label>
+                            <label class="option"><input type="radio" name="question8" value="d"> are Tortured</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>9. Which city in Sweden hosted the Eurovision Song Contest</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question9" value="a"> Stockholm </label>
+                            <label class="option"><input type="radio" name="question9" value="b"> Gothenburg </label>
+                            <label class="option"><input type="radio" name="question9" value="c"> Västerås </label>
+                            <label class="option"><input type="radio" name="question9" value="d"> Malmö </label>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Geography -->
+                    <div class="category-header">True or false</div>
+                    <div class="question">
+                        <p>10. The human body has 206 bones at birth</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question10" value="a"> True</label>
+                            <label class="option"><input type="radio" name="question10" value="b"> False</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>11. Gatophobia is the fear of cats</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question11" value="a"> True</label>
+                            <label class="option"><input type="radio" name="question11" value="b"> False</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>12. Only female ducks quack</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question12" value="a"> True</label>
+                            <label class="option"><input type="radio" name="question12" value="b"> False</label>
+
+                        </div>
+                    </div>
+
+                    <!-- Category 5: Sports -->
+                    <div class="category-header">General</div>
+                    <div class="question">
+                        <p>13. Which American poet wrote the famous poem "The Raven"? </p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question13" value="a"> Emily Dickinson</label>
+                            <label class="option"><input type="radio" name="question13" value="b"> Edgar Allan Poe</label>
+                            <label class="option"><input type="radio" name="question13" value="c"> Walt Whitman</label>
+                            <label class="option"><input type="radio" name="question13" value="d"> Langston Hughes</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>14. What is the primary ingredient in hummus?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question14" value="a"> Mustard</label>
+                            <label class="option"><input type="radio" name="question14" value="b"> Eggs</label>
+                            <label class="option"><input type="radio" name="question14" value="c"> Chickpeas</label>
+                            <label class="option"><input type="radio" name="question14" value="d"> Avacado </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>15. Who wrote "To Kill a Mockingbird"?</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="question15" value="a"> Harper Lee</label>
+                            <label class="option"><input type="radio" name="question15" value="b"> J.D. Salinger</label>
+                            <label class="option"><input type="radio" name="question15" value="c"> F. Scott Fitzgerald </label>
+                            <label class="option"><input type="radio" name="question15" value="d"> John Steinbeck</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="button" class="submit-button" onclick="submitQuiz()">Submit</button>
+                </form>
+                
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Container -->
+    <div id="feedback" class="feedback"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var startButton = document.getElementById('start-button');
+            var quizContainer = document.getElementById('quiz-container');
+            var startContainer = document.getElementById('start-container');
+            var timerElement = document.getElementById('timer');
+            var timeLeft = 5 * 60; // 5 minutes in seconds
+        
+            startButton.addEventListener('click', function() {
+                startContainer.style.display = 'none';
+                quizContainer.style.display = 'block';
+                timerElement.style.display = 'block';
+                startTimer();
+            });
+        
+            function startTimer() {
+                var timer = setInterval(function() {
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = timeLeft % 60;
+                    
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    
+                    timerElement.textContent = `Time left: ${minutes}:${seconds}`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        submitQuiz();
+                    }
+                    timeLeft--;
+                }, 1000);
+            }
+        
+            function submitQuiz() {
+                var form = document.getElementById('quizForm');
+                var result = document.getElementById('result');
+                var feedback = document.getElementById('feedback');
+                var score = 0;
+        
+                // Correct answers
+                var answers = {
+                    question1: 'd',
+                    question2: 'b',
+                    question3: 'a',
+                    question4: 'b',
+                    question5: 'c',
+                    question6: 'b',
+                    question7: 'a',
+                    question8: 'c',
+                    question9: 'd',
+                    question10: 'b',
+                    question11: 'a',
+                    question12: 'a',
+                    question13: 'b',
+                    question14: 'c',
+                    question15: 'a'
+                };
+        
+                // Clear previous feedback
+                feedback.innerHTML = '';
+        
+                // Initialize question index
+                var questionIndex = 1;
+        
+                // Check answers
+                Object.keys(answers).forEach(function(question) {
+                    var selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+                    if (selectedOption) {
+                        var selectedValue = selectedOption.value;
+                        var correctValue = answers[question];
+                        var feedbackMessage = '';
+        
+                        if (selectedValue === correctValue) {
+                            feedbackMessage = `<p class="correct">Question ${questionIndex}: Correct!</p>`;
+                            score++;
+                        } else {
+                            var correctAnswerText = document.querySelector(`input[name="${question}"][value="${correctValue}"]`).parentNode.textContent.trim();
+                            feedbackMessage = `<p class="incorrect">Question ${questionIndex}: Incorrect. The correct answer is "${correctAnswerText}".</p>`;
+                        }
+        
+                        feedback.innerHTML += feedbackMessage;
+                    } else {
+                        feedback.innerHTML += `<p class="incorrect">Question ${questionIndex}: No answer selected.</p>`;
+                    }
+        
+                    // Move to next question index
+                    questionIndex++;
+                });
+        
+                // Display total result
+                result.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
+        
+                // Show the feedback container
+                feedback.style.display = 'block';
+                
+                // Hide the timer
+                timerElement.style.display = 'none';
+        
+                // Disable all inputs to prevent further changes
+                var inputs = form.getElementsByTagName('input');
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = true;
+                }
+        
+                // Hide the submit button
+                var submitButton = document.querySelector('.submit-button');
+                if (submitButton) {
+                    submitButton.style.display = 'none';
+                }
+        
+                // Scroll to the top of the results
+                result.scrollIntoView({behavior: "smooth"});
+            }
+        
+            // Attach submitQuiz function to window object so it can be called from HTML
+            window.submitQuiz = submitQuiz;
+        });
+        </script>
+    <div id="timer" class="timer">Time left: 05:00</div>
+</body>
+</html>
